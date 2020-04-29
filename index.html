@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+ 
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Data</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Mars Data</a></p>
+        </div>
+
+          <!-- Display Mars data -->
+        <div class="row">
+            <div class="col-lg-8">
+                <h3 class="heading">Latest Mars News</h3>
+                <h4>{{ mars_data.news_title }}</h4>
+                <p>{{ mars_data.news_paragraph }}</p>
+                <br>
+                <h3 class="heading">Featured Mars Image</h3>
+                <a href="{{ mars_data.img_url }}">
+                    <img class="figure_img" src="{{ mars_data.img_url }}" width=900px>
+                </a>
+            </div>
+            <br>
+            <br>
+            <div class="col-lg-4">
+                <div class="card" style="width: 40rem;">
+                    <div class="card-body">
+                        <h3 class="card-title">Current Mars Weather</h3>
+                        <p class="card-text">{{ mars_data.mars_weather}}</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <h3 class="heading">Mars Facts</h3>
+                {{ mars_data.mars_html_table|safe }}
+            </div>
+        </div>
+        <br>
+        <h3 class="heading text-center">Mars Hemispheres</h3>
+            <div class="row">
+              <div class="col-lg-3">
+                 <div class="row">
+                    {%for hemisphere in mars_data.hemisphere_image_url%}
+                 <div class="col-md-6">
+                <img src="{{mars_data.hemisphere_image_url}}" alt="Mars Hemisphere" style="width:400px;height:400px;border:0;">
+                
+             </div>
+           </div>
+           {% end for%}
+   
+            </div>
+    </div>
+</body>
+
+</html>
